@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Mail;
 
 namespace Challenge.Controllers
 {
@@ -92,31 +93,29 @@ namespace Challenge.Controllers
         public IActionResult AddCliente([FromBody] ClienteDto clienteDto)
         {
             IActionResult result;
-            if (clienteDto == null) result = BadRequest();
+
 
             if (string.IsNullOrEmpty(clienteDto.Nombres) ||
                 string.IsNullOrEmpty(clienteDto.Apellidos) ||
                 string.IsNullOrEmpty(clienteDto.CUIT) ||
-                string.IsNullOrEmpty(clienteDto.Telefono) ||
-                string.IsNullOrEmpty(clienteDto.Email))
+                !ValidateEmail(clienteDto.Email) ||
+                clienteDto == null)
                 result = BadRequest();
             else
             {
-
                 var clienteModel = new ClienteModel
                 {
                     Nombres = clienteDto.Nombres,
                     Apellidos = clienteDto.Apellidos,
                     CUIT = clienteDto.CUIT,
                     Telefono_celular = clienteDto.Telefono,
-                    Email = clienteDto.Email
+                    Email = clienteDto.Email.Trim(),
+                    Fecha_De_Nacimiento = clienteDto.FechaDeNacimiento
                 };
-
 
                 _context.Clientes.Add(clienteModel);
 
                 _context.SaveChanges();
-
 
                 result = Ok();
             }
@@ -124,11 +123,29 @@ namespace Challenge.Controllers
             return result;
         }
 
+        private bool ValidateEmail(string email)
+        {
+            
+            var valid = true;
+
+            try //Si el string no pasa las validaciones del tipo que nos ofrecen como libreria para instanciarse, consideramos que el mail tiene un formato incorrecto
+            {
+                var emailAddress = new MailAddress(email); 
+            }
+            catch
+            {
+                valid = false;
+            }
+
+            return valid;
+
+        }
+
+
         [HttpPut("updateCliente")]
         public IActionResult UpdateCliente([FromBody] ClienteDto clienteDto)
         {
             IActionResult result;
-            if (clienteDto == null) result = BadRequest();
 
             var cliente2Update = _context.Clientes.SingleOrDefault(cliente => cliente.ID == clienteDto.ID);
 
@@ -136,7 +153,8 @@ namespace Challenge.Controllers
                 string.IsNullOrEmpty(clienteDto.Apellidos) ||
                 string.IsNullOrEmpty(clienteDto.CUIT) ||
                 string.IsNullOrEmpty(clienteDto.Telefono) ||
-                string.IsNullOrEmpty(clienteDto.Email) ||
+                !ValidateEmail(clienteDto.Email) ||
+                clienteDto == null ||
                 cliente2Update == null)
                 result = BadRequest();
             else
@@ -146,6 +164,7 @@ namespace Challenge.Controllers
                 cliente2Update.CUIT = clienteDto.CUIT;
                 cliente2Update.Telefono_celular = clienteDto.Telefono;
                 cliente2Update.Email = clienteDto.Email;
+                cliente2Update.Fecha_De_Nacimiento = clienteDto.FechaDeNacimiento;
 
                 _context.Update(cliente2Update);
                 _context.SaveChanges();
