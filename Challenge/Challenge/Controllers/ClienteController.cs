@@ -25,7 +25,7 @@ namespace Challenge.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<List<ClienteDto>> GetAsync()
+        public List<ClienteDto> Get()
         {
             
             var resp = _context.Clientes.ToList();
@@ -44,7 +44,7 @@ namespace Challenge.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ClienteDto> GetByIdAsync(int id)
+        public ClienteDto GetById(int id)
         {
 
             var resp = _context.Clientes.SingleOrDefault(cliente => cliente.ID == id);
@@ -66,7 +66,7 @@ namespace Challenge.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCliente([FromBody] ClienteDto clienteDto)
+        public IActionResult AddCliente([FromBody] ClienteDto clienteDto)
         {
             IActionResult result;
             if (clienteDto == null) result = BadRequest();
@@ -82,7 +82,6 @@ namespace Challenge.Controllers
 
                 var clienteModel = new ClienteModel
                 {
-                    ID = 2,
                     Nombres = clienteDto.Nombres,
                     Apellidos = clienteDto.Apellidos,
                     CUIT = clienteDto.CUIT,
@@ -103,7 +102,7 @@ namespace Challenge.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateCliente([FromBody] ClienteDto clienteDto)
+        public IActionResult UpdateCliente([FromBody] ClienteDto clienteDto)
         {
             IActionResult result;
             if (clienteDto == null) result = BadRequest();

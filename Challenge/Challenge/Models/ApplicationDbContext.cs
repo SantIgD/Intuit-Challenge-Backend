@@ -14,5 +14,12 @@ namespace Challenge.Models
         }
        
         public DbSet<ClienteModel> Clientes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ClienteModel>()
+                .Property(p => p.ID)
+                .ValueGeneratedOnAdd();
+        }
     }
 }
