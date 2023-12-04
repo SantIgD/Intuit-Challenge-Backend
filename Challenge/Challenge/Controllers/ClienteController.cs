@@ -1,8 +1,7 @@
 ﻿using Challenge.Dtos;
-using Domain.Models;
+using Challenge.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +15,9 @@ namespace Challenge.Controllers
     {
 
         private readonly ILogger<ClienteController> _logger;
-        private readonly Domain.Models.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         
-        public ClienteController(ILogger<ClienteController> logger, Domain.Models.ApplicationDbContext context)
+        public ClienteController(ILogger<ClienteController> logger, ApplicationDbContext context)
         {
             _logger = logger;
             _context = context;
@@ -28,10 +27,7 @@ namespace Challenge.Controllers
         [HttpGet("all")]
         public async Task<List<ClienteDto>> GetAsync()
         {
-            var queryHandler = new ClienteAllQueryHandler();
-
-            //var resp = await queryHandler.Handle();
-
+            
             var resp = _context.Clientes.ToList();
 
             return resp.Select(x => new ClienteDto
@@ -50,6 +46,7 @@ namespace Challenge.Controllers
         [HttpGet("{id}")]
         public async Task<ClienteDto> GetByIdAsync(int id)
         {
+
             var resp = _context.Clientes.SingleOrDefault(cliente => cliente.ID == id);
 
             ClienteDto clienteDto = new();

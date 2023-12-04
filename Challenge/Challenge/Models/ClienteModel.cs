@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Models
+namespace Challenge.Models
 {
     public class ClienteModel
     {

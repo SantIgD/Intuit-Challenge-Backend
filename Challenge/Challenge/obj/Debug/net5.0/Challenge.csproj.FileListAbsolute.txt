@@ -11,10 +11,6 @@ C:\temp\Intuit-Challenge-Backend\Challenge\Challenge\bin\Debug\net5.0\Microsoft.
 C:\temp\Intuit-Challenge-Backend\Challenge\Challenge\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\temp\Intuit-Challenge-Backend\Challenge\Challenge\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\temp\Intuit-Challenge-Backend\Challenge\Challenge\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\temp\Intuit-Challenge-Backend\Challenge\Challenge\bin\Debug\net5.0\Domain.dll
-C:\temp\Intuit-Challenge-Backend\Challenge\Challenge\bin\Debug\net5.0\Service.dll
-C:\temp\Intuit-Challenge-Backend\Challenge\Challenge\bin\Debug\net5.0\Service.pdb
-C:\temp\Intuit-Challenge-Backend\Challenge\Challenge\bin\Debug\net5.0\Domain.pdb
 C:\temp\Intuit-Challenge-Backend\Challenge\Challenge\obj\Debug\net5.0\Challenge.csproj.AssemblyReference.cache
 C:\temp\Intuit-Challenge-Backend\Challenge\Challenge\obj\Debug\net5.0\Challenge.GeneratedMSBuildEditorConfig.editorconfig
 C:\temp\Intuit-Challenge-Backend\Challenge\Challenge\obj\Debug\net5.0\Challenge.AssemblyInfoInputs.cache
