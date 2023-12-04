@@ -15,10 +15,13 @@ namespace Challenge.Controllers
     {
 
         private readonly ILogger<ClienteController> _logger;
-
-        public ClienteController(ILogger<ClienteController> logger)
+        private readonly Domain.Models.ApplicationDbContext _context;
+        
+        public ClienteController(ILogger<ClienteController> logger, Domain.Models.ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
+
         }
 
         [HttpGet("all")]
@@ -26,17 +29,19 @@ namespace Challenge.Controllers
         {
             var queryHandler = new ClienteAllQueryHandler();
 
-            var resp = await queryHandler.Handle();
+            //var resp = await queryHandler.Handle();
+
+            var resp = _context.Clientes.ToList();
 
             return resp.Select(x => new ClienteDto
             {
                 ID = x.ID,
                 Nombres = x.Nombres,
                 Apellidos = x.Apellidos,
-                FechaDeNacimiento = x.FechaDeNacimiento,
+                FechaDeNacimiento = x.Fecha_De_Nacimiento,
                 CUIT = x.CUIT,
                 Domicilio = x.Domicilio,
-                Telefono = x.Telefono,
+                Telefono = x.Telefono_celular,
                 Email = x.Email
             }).ToList();
         }
