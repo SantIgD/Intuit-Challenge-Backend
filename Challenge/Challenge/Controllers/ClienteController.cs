@@ -24,7 +24,7 @@ namespace Challenge.Controllers
 
         }
 
-        [HttpGet("all")]
+        [HttpGet("getAll")]
         public List<ClienteDto> Get()
         {
             
@@ -43,7 +43,7 @@ namespace Challenge.Controllers
             }).ToList();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getById/{id}")]
         public ClienteDto GetById(int id)
         {
 
@@ -65,7 +65,30 @@ namespace Challenge.Controllers
             return clienteDto;
         }
 
-        [HttpPost]
+        [HttpGet("getByNames/{nombres}")]
+        public List<ClienteDto> GetByName(string nombres)
+        {
+
+            var resp = _context.Clientes.Where(cliente => cliente.Nombres.Contains(nombres)).ToList();
+
+            ClienteDto clienteDto = new();
+
+            if (resp == null) throw new Exception($"El cliente con nombres {nombres} no se encuentra registrado en nuestro sistema");
+
+            return resp.Select(cliente => new ClienteDto
+            {
+               ID = cliente.ID,
+               Nombres = cliente.Nombres,
+               Apellidos = cliente.Apellidos,
+               FechaDeNacimiento = cliente.Fecha_De_Nacimiento,
+               CUIT = cliente.CUIT,
+               Domicilio = cliente.Domicilio,
+               Telefono = cliente.Telefono_celular,
+               Email = cliente.Email
+             }).ToList();
+        }
+
+        [HttpPost("addCliente")]
         public IActionResult AddCliente([FromBody] ClienteDto clienteDto)
         {
             IActionResult result;
@@ -101,7 +124,7 @@ namespace Challenge.Controllers
             return result;
         }
 
-        [HttpPut]
+        [HttpPut("updateCliente")]
         public IActionResult UpdateCliente([FromBody] ClienteDto clienteDto)
         {
             IActionResult result;
