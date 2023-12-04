@@ -7,7 +7,7 @@ GO
 -- Create the table in the specified schema
 CREATE TABLE dbo.Clientes	
 (
-   ID						INT				NOT NULL   PRIMARY KEY, -- primary key column
+   ID						INT				IDENTITY(1,1)   PRIMARY KEY , -- primary key column
    Nombres					[NVARCHAR](50)  NOT NULL,
    Apellidos				[NVARCHAR](50)  NOT NULL,
    Fecha_de_Nacimiento		[DATE]					,
