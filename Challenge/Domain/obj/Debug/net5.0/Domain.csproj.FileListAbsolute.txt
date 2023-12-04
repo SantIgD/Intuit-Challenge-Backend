@@ -1,0 +1,12 @@
+C:\temp\Intuit-Challenge-Backend\Challenge\Domain\bin\Debug\net5.0\Domain.deps.json
+C:\temp\Intuit-Challenge-Backend\Challenge\Domain\bin\Debug\net5.0\Domain.dll
+C:\temp\Intuit-Challenge-Backend\Challenge\Domain\bin\Debug\net5.0\ref\Domain.dll
+C:\temp\Intuit-Challenge-Backend\Challenge\Domain\bin\Debug\net5.0\Domain.pdb
+C:\temp\Intuit-Challenge-Backend\Challenge\Domain\obj\Debug\net5.0\Domain.csproj.AssemblyReference.cache
+C:\temp\Intuit-Challenge-Backend\Challenge\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\temp\Intuit-Challenge-Backend\Challenge\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
+C:\temp\Intuit-Challenge-Backend\Challenge\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs
+C:\temp\Intuit-Challenge-Backend\Challenge\Domain\obj\Debug\net5.0\Domain.csproj.CoreCompileInputs.cache
+C:\temp\Intuit-Challenge-Backend\Challenge\Domain\obj\Debug\net5.0\Domain.dll
+C:\temp\Intuit-Challenge-Backend\Challenge\Domain\obj\Debug\net5.0\ref\Domain.dll
+C:\temp\Intuit-Challenge-Backend\Challenge\Domain\obj\Debug\net5.0\Domain.pdb

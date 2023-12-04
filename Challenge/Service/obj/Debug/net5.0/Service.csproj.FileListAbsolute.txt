@@ -1,0 +1,15 @@
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\bin\Debug\net5.0\Service.deps.json
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\bin\Debug\net5.0\Service.dll
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\bin\Debug\net5.0\ref\Service.dll
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\bin\Debug\net5.0\Service.pdb
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\bin\Debug\net5.0\Domain.dll
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\bin\Debug\net5.0\Domain.pdb
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\obj\Debug\net5.0\Service.csproj.AssemblyReference.cache
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\obj\Debug\net5.0\Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\obj\Debug\net5.0\Service.AssemblyInfoInputs.cache
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\obj\Debug\net5.0\Service.AssemblyInfo.cs
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\obj\Debug\net5.0\Service.csproj.CoreCompileInputs.cache
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\obj\Debug\net5.0\Service.csproj.CopyComplete
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\obj\Debug\net5.0\Service.dll
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\obj\Debug\net5.0\ref\Service.dll
+C:\temp\Intuit-Challenge-Backend\Challenge\Service\obj\Debug\net5.0\Service.pdb

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "CmgtAzOJSjB9eW5nsSZZCd5p9Z3bHgc089/uivNzwlVZ2tvEIs1cCEymstLM36x04GCbgTBpVbWvrhG4mX/aMQ==",
+  "success": true,
+  "projectFilePath": "C:\\temp\\Intuit-Challenge-Backend\\Challenge\\Challenge\\Challenge.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\juani\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\juani\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\juani\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\juani\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\juani\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\juani\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
