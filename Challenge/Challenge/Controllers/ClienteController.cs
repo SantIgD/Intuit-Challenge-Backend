@@ -40,5 +40,86 @@ namespace Challenge.Controllers
                 Email = x.Email
             }).ToList();
         }
+
+        [HttpGet("{id}")]
+        public async Task<ClienteDto> GetByIdAsync(int id)
+        {
+            var queryHandler = new ClienteByIdQueryHandler(id);
+
+            var cliente = await queryHandler.Handle();
+
+            var clienteDto = new ClienteDto();
+
+            if (cliente != null)
+            {
+                clienteDto.ID = cliente.ID;
+                clienteDto.Nombres = cliente.Nombres;
+                clienteDto.Apellidos = cliente.Apellidos;
+                clienteDto.FechaDeNacimiento = cliente.FechaDeNacimiento;
+                clienteDto.CUIT = cliente.CUIT;
+                clienteDto.Domicilio = cliente.Domicilio;
+                clienteDto.Telefono = cliente.Telefono;
+                clienteDto.Email = cliente.Email;
+            }
+
+            return clienteDto;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddCliente([FromBody] ClienteDto clienteDto)
+        {
+            IActionResult result;
+            if (clienteDto == null) result = BadRequest();
+
+
+            if (string.IsNullOrEmpty(clienteDto.Nombres) ||
+                string.IsNullOrEmpty(clienteDto.Apellidos) ||
+                string.IsNullOrEmpty(clienteDto.CUIT) ||
+                string.IsNullOrEmpty(clienteDto.Telefono) ||
+                string.IsNullOrEmpty(clienteDto.Email))
+                result = BadRequest();
+            else
+            {
+                var commandHandler = new ClienteAddCommandHandler(clienteDto.Nombres,
+                                                                  clienteDto.Apellidos,
+                                                                  clienteDto.CUIT,
+                                                                  clienteDto.Telefono,
+                                                                  clienteDto.Email);
+                await commandHandler.Handle();
+
+                result = Ok();
+            }
+
+            return result;
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateCliente([FromBody] ClienteDto clienteDto)
+        {
+            IActionResult result;
+            if (clienteDto == null) result = BadRequest();
+
+
+            if (string.IsNullOrEmpty(clienteDto.Nombres) ||
+                string.IsNullOrEmpty(clienteDto.Apellidos) ||
+                string.IsNullOrEmpty(clienteDto.CUIT) ||
+                string.IsNullOrEmpty(clienteDto.Telefono) ||
+                string.IsNullOrEmpty(clienteDto.Email))
+                result = BadRequest();
+            else
+            {
+                var commandHandler = new ClienteUpdateCommandHandler(clienteDto.ID,
+                                                                     clienteDto.Nombres,
+                                                                     clienteDto.Apellidos,
+                                                                     clienteDto.CUIT,
+                                                                     clienteDto.Telefono,
+                                                                     clienteDto.Email);
+                await commandHandler.Handle();
+
+                result = Ok();
+            }
+
+            return result;
+        }
     }
 }
