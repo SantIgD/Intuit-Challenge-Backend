@@ -18,3 +18,13 @@ CREATE TABLE dbo.Clientes
 
 );
 GO
+
+-- Data Examples
+insert into Clientes (Nombres, Apellidos, Fecha_de_Nacimiento, CUIT, domicilio, telefono_celular, Email)
+
+Values 
+	('Juan', 'Perez', '1997-08-31', '1-13452341-0', 'roma 4635', '4335132', 'jperez@gmail.com'),
+	('Pedro', 'Roman', '2003-03-05', '1-34151343-0', 'platense 3412', '3151342351', 'proman@gmail.com'),
+	('Marta', 'Armen', '1997-03-15', '2-31414231-1', 'Sanchez 2311', '4335132', 'marmen@gmail.com');
+
+GO

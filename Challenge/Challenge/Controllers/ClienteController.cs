@@ -95,21 +95,22 @@ namespace Challenge.Controllers
             IActionResult result;
 
 
-            if (string.IsNullOrEmpty(clienteDto.Nombres) ||
+            if (clienteDto == null ||
+                string.IsNullOrEmpty(clienteDto.Nombres) ||
                 string.IsNullOrEmpty(clienteDto.Apellidos) ||
                 string.IsNullOrEmpty(clienteDto.CUIT) ||
-                !ValidateEmail(clienteDto.Email) ||
-                clienteDto == null)
+                !ValidateEmail(clienteDto.Email))
                 result = BadRequest();
             else
             {
                 var clienteModel = new ClienteModel
                 {
-                    Nombres = clienteDto.Nombres,
-                    Apellidos = clienteDto.Apellidos,
                     CUIT = clienteDto.CUIT,
-                    Telefono_celular = clienteDto.Telefono,
                     Email = clienteDto.Email.Trim(),
+                    Nombres = clienteDto.Nombres,
+                    Domicilio = clienteDto.Domicilio,
+                    Apellidos = clienteDto.Apellidos,
+                    Telefono_celular = clienteDto.Telefono,
                     Fecha_De_Nacimiento = clienteDto.FechaDeNacimiento
                 };
 
@@ -149,21 +150,22 @@ namespace Challenge.Controllers
 
             var cliente2Update = _context.Clientes.SingleOrDefault(cliente => cliente.ID == clienteDto.ID);
 
-            if (string.IsNullOrEmpty(clienteDto.Nombres) ||
+            if (clienteDto == null ||
+                string.IsNullOrEmpty(clienteDto.Nombres) ||
                 string.IsNullOrEmpty(clienteDto.Apellidos) ||
                 string.IsNullOrEmpty(clienteDto.CUIT) ||
                 string.IsNullOrEmpty(clienteDto.Telefono) ||
                 !ValidateEmail(clienteDto.Email) ||
-                clienteDto == null ||
                 cliente2Update == null)
                 result = BadRequest();
             else
             {
-                cliente2Update.Nombres = clienteDto.Nombres;
-                cliente2Update.Apellidos = clienteDto.Apellidos;
                 cliente2Update.CUIT = clienteDto.CUIT;
-                cliente2Update.Telefono_celular = clienteDto.Telefono;
                 cliente2Update.Email = clienteDto.Email;
+                cliente2Update.Nombres = clienteDto.Nombres;
+                cliente2Update.Domicilio = clienteDto.Domicilio;
+                cliente2Update.Apellidos = clienteDto.Apellidos;
+                cliente2Update.Telefono_celular = clienteDto.Telefono;
                 cliente2Update.Fecha_De_Nacimiento = clienteDto.FechaDeNacimiento;
 
                 _context.Update(cliente2Update);
