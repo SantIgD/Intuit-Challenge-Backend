@@ -1,4 +1,5 @@
 ﻿using Challenge.Dtos;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Service;
@@ -49,23 +50,20 @@ namespace Challenge.Controllers
         [HttpGet("{id}")]
         public async Task<ClienteDto> GetByIdAsync(int id)
         {
-            var queryHandler = new ClienteByIdQueryHandler(id);
+            var resp = _context.Clientes.SingleOrDefault(cliente => cliente.ID == id);
 
-            var cliente = await queryHandler.Handle();
+            ClienteDto clienteDto = new();
 
-            var clienteDto = new ClienteDto();
-
-            if (cliente != null)
-            {
-                clienteDto.ID = cliente.ID;
-                clienteDto.Nombres = cliente.Nombres;
-                clienteDto.Apellidos = cliente.Apellidos;
-                clienteDto.FechaDeNacimiento = cliente.FechaDeNacimiento;
-                clienteDto.CUIT = cliente.CUIT;
-                clienteDto.Domicilio = cliente.Domicilio;
-                clienteDto.Telefono = cliente.Telefono;
-                clienteDto.Email = cliente.Email;
-            }
+            if (resp == null) throw new Exception($"El cliente con id {id} no se encuentra registrado en nuestro sistema");
+            
+            clienteDto.ID = resp.ID;
+            clienteDto.Nombres = resp.Nombres;
+            clienteDto.Apellidos = resp.Apellidos;
+            clienteDto.FechaDeNacimiento = resp.Fecha_De_Nacimiento;
+            clienteDto.CUIT = resp.CUIT;
+            clienteDto.Domicilio = resp.Domicilio;
+            clienteDto.Telefono = resp.Telefono_celular;
+            clienteDto.Email = resp.Email;
 
             return clienteDto;
         }
@@ -76,7 +74,6 @@ namespace Challenge.Controllers
             IActionResult result;
             if (clienteDto == null) result = BadRequest();
 
-
             if (string.IsNullOrEmpty(clienteDto.Nombres) ||
                 string.IsNullOrEmpty(clienteDto.Apellidos) ||
                 string.IsNullOrEmpty(clienteDto.CUIT) ||
@@ -85,12 +82,22 @@ namespace Challenge.Controllers
                 result = BadRequest();
             else
             {
-                var commandHandler = new ClienteAddCommandHandler(clienteDto.Nombres,
-                                                                  clienteDto.Apellidos,
-                                                                  clienteDto.CUIT,
-                                                                  clienteDto.Telefono,
-                                                                  clienteDto.Email);
-                await commandHandler.Handle();
+
+                var clienteModel = new ClienteModel
+                {
+                    ID = 2,
+                    Nombres = clienteDto.Nombres,
+                    Apellidos = clienteDto.Apellidos,
+                    CUIT = clienteDto.CUIT,
+                    Telefono_celular = clienteDto.Telefono,
+                    Email = clienteDto.Email
+                };
+
+
+                _context.Clientes.Add(clienteModel);
+
+                _context.SaveChanges();
+
 
                 result = Ok();
             }
@@ -104,22 +111,25 @@ namespace Challenge.Controllers
             IActionResult result;
             if (clienteDto == null) result = BadRequest();
 
+            var cliente2Update = _context.Clientes.SingleOrDefault(cliente => cliente.ID == clienteDto.ID);
 
             if (string.IsNullOrEmpty(clienteDto.Nombres) ||
                 string.IsNullOrEmpty(clienteDto.Apellidos) ||
                 string.IsNullOrEmpty(clienteDto.CUIT) ||
                 string.IsNullOrEmpty(clienteDto.Telefono) ||
-                string.IsNullOrEmpty(clienteDto.Email))
+                string.IsNullOrEmpty(clienteDto.Email) ||
+                cliente2Update == null)
                 result = BadRequest();
             else
             {
-                var commandHandler = new ClienteUpdateCommandHandler(clienteDto.ID,
-                                                                     clienteDto.Nombres,
-                                                                     clienteDto.Apellidos,
-                                                                     clienteDto.CUIT,
-                                                                     clienteDto.Telefono,
-                                                                     clienteDto.Email);
-                await commandHandler.Handle();
+                cliente2Update.Nombres = clienteDto.Nombres;
+                cliente2Update.Apellidos = clienteDto.Apellidos;
+                cliente2Update.CUIT = clienteDto.CUIT;
+                cliente2Update.Telefono_celular = clienteDto.Telefono;
+                cliente2Update.Email = clienteDto.Email;
+
+                _context.Update(cliente2Update);
+                _context.SaveChanges();
 
                 result = Ok();
             }
